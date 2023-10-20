@@ -1,0 +1,56 @@
+/* some styles started from landing-page css */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    flex-direction: column;
+  }  
+
+.header {
+    height: 72px;
+    background: #1F2937;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* added to look balanced...necessary? */
+    padding: 16px;
+  }
+
+.headerlogo {
+    font-size: 24px;
+    color: #F9FAF8;
+  }
+
+.calculatorSection {
+    height: 800px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.calculator { /* LEFT OFF HERE ... did not edit */
+    height: 150px;
+    width: 900px;
+    font-family: Roboto, sans-serif;
+    border: none;
+    border-radius: 25% 10%;
+    background: #3882F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+
+.footer {
+    height: 72px;
+    background: #1F2937;
+    color: #E5E7EB;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
