@@ -35,16 +35,17 @@ body {
     font-family: Roboto, sans-serif;
     border: 1px solid gray;
     border-radius: 20px;
+    overflow: hidden; /* keeps children within border-radius */
     background: lightgray;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* conflicts w/ min-height & align-self: stretch */
     justify-content: center;
     align-items: stretch; /* only made zero and equals stretch -- needed to apply flex: 1; to row items */
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
   }
 
 .screen {
-  height: 150px;
+  /* height: 150px; */
   /* width: 350px; */
   font-size: 18px;
   color: whitesmoke;
@@ -53,19 +54,27 @@ body {
   /* min-height: 30px;  */
   /* min-width: 120px; */
   margin-left: auto;
-  margin-right: 5px;
-  flex: 1; /* doesn't work here ??? */
+  /* margin-right: 5px; */
+  /* flex: 1; doesn't work here ??? */
   /* align-self: center; */
+  /* align-self: stretch; */
+  /* display: flex; */
+  flex-grow: 1;
+  /* width: 25%; */
+  min-height: 20%;
+  align-self: stretch;
 }
 
 .row {
-  height: 90px;
+  /* height: 90px; */
   font-size: 18px;
   display: flex;
   /* flex-direction: row; ??? unnecessary */
   justify-content: center;
-  align-items: center; /* stretch makes them stretch vertically */  
+  align-items: stretch; /* stretch makes them stretch vertically */  
   cursor: pointer;
+  min-height: 16%;
+  /* align-self: stretch; -- unnecessary??? */
 }
 
 .allClear {
@@ -78,6 +87,10 @@ body {
   color: whitesmoke;
   background-color: #e6a121;
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: .5px solid gray;
 }
 
 #equals {
@@ -88,6 +101,7 @@ body {
   color: whitesmoke;
   background-color: rgb(77, 70, 70);
   flex: 1;
+  border: .5px solid gray;
 }
 
 #zero {
