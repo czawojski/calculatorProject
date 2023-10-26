@@ -2,7 +2,7 @@
 const add = (x, y) => x + y;
 const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
-const divide = (x, y) => x /y;
+const divide = (x, y) => x / y;
 
 // let num1;
 // let num2;
@@ -26,7 +26,6 @@ function operate(num1, operator, num2) {
 };
 
 // DONE: functions to detect onclick and display characters on screen (innerhtml)
-// TODO: You should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
 const screen = document.querySelector(".screen");
 const digit1 = document.querySelector("#one");
@@ -46,7 +45,8 @@ const plusSymbol = document.querySelector("#plus");
 const equalsSymbol = document.querySelector("#equals");
 const allClear = document.querySelector(".allClear");
 
-digit1.addEventListener("click", function () {
+// using e => works like function () below...
+digit1.addEventListener("click", e => {
         screen.innerHTML = "1";
  });
 
@@ -91,7 +91,7 @@ divideSymbol.addEventListener("click", function () {
  });
 
 multiplySymbol.addEventListener("click", function () {
-        screen.innerHTML = "x";
+        screen.innerHTML = "*";
  });
 
 subtractSymbol.addEventListener("click", function () {
@@ -109,3 +109,14 @@ equalsSymbol.addEventListener("click", function () {
 allClear.addEventListener("click", function () {
         screen.innerHTML = "";
  });
+
+// TODO: You should be storing the ‘display value’ in a variable somewhere for use in the next step.
+// THIS WORKS: logs events when clicking on div -- adds content of innerHTML to array...
+// NEXT STEP: use array methods--maybe regex--to operate on numbers in array, then display answer on screen
+let calcOutput = [];
+document.addEventListener("click", e => {
+        if (e.target.matches("div")) {
+                console.log(screen.innerHTML);
+                calcOutput.push(screen.innerHTML);
+                }
+        })

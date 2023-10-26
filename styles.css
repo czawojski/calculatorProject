@@ -59,12 +59,13 @@ body {
   /* align-self: center; */
   /* align-self: stretch; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-grow: 1;
   /* flex: 1; */
   /* width: 25%; */
   /* min-height: 20%; */
+  /* padding-left: 300px; -- pushes to the right w/o justify-content above */
 }
 
 .row {
