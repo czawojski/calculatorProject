@@ -1,31 +1,29 @@
-// create functions for the following: add, subtract, multiply, divide
 const add = (x, y) => x + y;
 const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 
+// CURRENTLY not using, but might...
 // let num1;
 // let num2;
 // let operator;
 
-function operate(num1, operator, num2) {
-    let result;
-    if (operator === '+') {
-       result = add(num1, num2);
-    }
-    else if (operator === '-') {
-        result = subtract(num1, num2);
-    }
-    else if (operator === '*') {
-        result = multiply(num1, num2);
-    }
-    else if (operator === '/') {
-        result = divide(num1, num2);
-    }
-    return result;
-};
-
-// DONE: functions to detect onclick and display characters on screen (innerhtml)
+// function operate(num1, operator, num2) {
+//     let result;
+//     if (operator === '+') {
+//        result = add(num1, num2);
+//     }
+//     else if (operator === '-') {
+//         result = subtract(num1, num2);
+//     }
+//     else if (operator === '*') {
+//         result = multiply(num1, num2);
+//     }
+//     else if (operator === '/') {
+//         result = divide(num1, num2);
+//     }
+//     return result;
+// };
 
 const screen = document.querySelector(".screen");
 const digit1 = document.querySelector("#one");
@@ -110,13 +108,71 @@ allClear.addEventListener("click", function () {
         screen.innerHTML = "";
  });
 
-// TODO: You should be storing the ‘display value’ in a variable somewhere for use in the next step.
-// THIS WORKS: logs events when clicking on div -- adds content of innerHTML to array...
-// NEXT STEP: use array methods--maybe regex--to operate on numbers in array, then display answer on screen
+// TODO: combine digits before operator, operator, combine digits after operator, show result after user clicks =
+
+// USEFUL? create array of first numbers and join them, then array of operator, then array of numbers and join them... when = clicked, show on screen:
+// const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+// const citrus = fruits.slice(0, fruits.length);
+// const test = citrus.join('');
+
+// document.getElementById("demo").innerHTML = test;
+
 let calcOutput = [];
 document.addEventListener("click", e => {
         if (e.target.matches("div")) {
                 console.log(screen.innerHTML);
+                // if screen.innerHTML === "0" || "1" ... push to new array... then concat
                 calcOutput.push(screen.innerHTML);
+                // HERE??? wait for numbers, combine, operator, combine numbers, then = below...
+                if (screen.innerHTML === '=') {
+                        let equation = calcOutput.join(' ');
+                        screen.innerHTML = parseFloat(calculator.calculate(equation).toFixed(8));
+                        console.log(equation);
+                        return true
+                }
+                else if (e.target.matches(".allClear")) {
+                        calcOutput = [];
+                        return
+                }
                 }
         })
+
+// iterate over items -- if a number, concat -- then operator -- then number -- then = -- print result to screen
+
+
+// Calculator function from Odin Project lesson material
+let calculator;
+calculator = new Calculator;
+
+function Calculator() {
+  
+        this.methods = {
+          "-": (a, b) => a - b,
+          "+": (a, b) => a + b,
+          "*": (a, b) => a * b,
+          "÷": (a, b) => a / b,
+        };
+      
+        this.calculate = function(str) {
+      
+          let split = str.split(' '),
+            a = +split[0],
+            op = split[1],
+            b = +split[2];
+
+        // COMMENTED out below to avoid NaN after pressing AC:
+        //   if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+        //     return NaN;
+        //   }
+      
+          return this.methods[op](a, b);
+        };
+      
+        this.addMethod = function(name, func) {
+          this.methods[name] = func;
+        };
+      }
+
+// to call: calculator.calculate("34 - 12");
+
+// THEN... if a number, call join -- if an operator, do operation -- if a number, join -- if =, end function
