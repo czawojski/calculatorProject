@@ -45,68 +45,75 @@ const allClear = document.querySelector(".allClear");
 
 // using e => works like function () below...
 digit1.addEventListener("click", e => {
-        screen.innerHTML = "1";
+        screen.innerHTML += "1";
  });
 
 digit2.addEventListener("click", function () {
-        screen.innerHTML = "2";
+        screen.innerHTML += "2";
  });
 
 digit3.addEventListener("click", function () {
-        screen.innerHTML = "3";
+        screen.innerHTML += "3";
  });
 
 digit4.addEventListener("click", function () {
-        screen.innerHTML = "4";
+        screen.innerHTML += "4";
  });
 
 digit5.addEventListener("click", function () {
-        screen.innerHTML = "5";
+        screen.innerHTML += "5";
  });
 
 digit6.addEventListener("click", function () {
-        screen.innerHTML = "6";
+        screen.innerHTML += "6";
  });
 
 digit7.addEventListener("click", function () {
-        screen.innerHTML = "7";
+        screen.innerHTML += "7";
  });
 
 digit8.addEventListener("click", function () {
-        screen.innerHTML = "8";
+        screen.innerHTML += "8";
  });
 
 digit9.addEventListener("click", function () {
-        screen.innerHTML = "9";
+        screen.innerHTML += "9";
  });
 
 digit0.addEventListener("click", function () {
-        screen.innerHTML = "0";
+        screen.innerHTML += "0";
  });
 
 divideSymbol.addEventListener("click", function () {
-        screen.innerHTML = "÷";
+        screen.innerHTML += " ÷ ";
  });
 
 multiplySymbol.addEventListener("click", function () {
-        screen.innerHTML = "*";
+        screen.innerHTML += " * ";
  });
 
 subtractSymbol.addEventListener("click", function () {
-        screen.innerHTML = "-";
+        screen.innerHTML += " - ";
  });
 
 plusSymbol.addEventListener("click", function () {
-        screen.innerHTML = "+";
+        screen.innerHTML += " + ";
  });
 
-equalsSymbol.addEventListener("click", function () {
-        screen.innerHTML = "=";
- });
+// equalsSymbol.addEventListener("click", function () {
+//         screen.innerHTML = "=";
+//  });
 
 allClear.addEventListener("click", function () {
         screen.innerHTML = "";
  });
+
+
+// += works with screen.innerHTML above... not calculating now -- calcOutput[] is storing everything in sequence... can I pass a string only to the function?
+
+//  QUESTION: Can I add the click to the screen.HTML as a whole? Then pass that equation to calculator.calculate...
+
+// ALSO: might have to remove space in split in calc function ???
 
 // TODO: combine digits before operator, operator, combine digits after operator, show result after user clicks =
 
@@ -117,28 +124,36 @@ allClear.addEventListener("click", function () {
 
 // document.getElementById("demo").innerHTML = test;
 
-let calcOutput = [];
+// let calcOutput = [];
+let displayVariable = "";
 document.addEventListener("click", e => {
-        if (e.target.matches("div")) {
-                console.log(screen.innerHTML);
-                // if screen.innerHTML === "0" || "1" ... push to new array... then concat
-                calcOutput.push(screen.innerHTML);
+        // if (e.target.matches("div")) {
+        //         console.log(screen.innerHTML);
+                // if (e.target.matches("#one" || "#two" || "#three" || "#four" || "#five" || "#six" || "#seven" || "#eight" || "#nine" || "#zero" || "#multiply" || "#divide" || "#subtract" || "#plus" )) {
+                //         displayVariable += screen.innerHTML;
+                // }
+                // let splitString = displayVariable.split(' ');                
+                // calcOutput.push(screen.innerHTML);
                 // HERE??? wait for numbers, combine, operator, combine numbers, then = below...
-                if (screen.innerHTML === '=') {
-                        let equation = calcOutput.join(' ');
-                        screen.innerHTML = parseFloat(calculator.calculate(equation).toFixed(8));
-                        console.log(equation);
+                // if (screen.innerHTML != '=') { THEN store in a variable as a string??? but if =, send to function
+                // if (screen.innerHTML === '=') {
+                //         // TODO: get rid of below? Array isn't working, but screen.innerHTML might...
+                //         let equation = calcOutput.join(' ');
+                //         screen.innerHTML = parseFloat(calculator.calculate(equation).toFixed(8));
+                //         console.log(equation);
+                //         return true
+                if (e.target.matches("#equals")) {
+                        screen.innerHTML = parseFloat(calculator.calculate(screen.innerHTML).toFixed(8));
+                        // console.log(displayVariable);
                         return true
                 }
+        // }
                 else if (e.target.matches(".allClear")) {
-                        calcOutput = [];
+                        screen.innerHTML = "";
+                        // calcOutput = [];
                         return
                 }
-                }
         })
-
-// iterate over items -- if a number, concat -- then operator -- then number -- then = -- print result to screen
-
 
 // Calculator function from Odin Project lesson material
 let calculator;
@@ -160,7 +175,7 @@ function Calculator() {
             op = split[1],
             b = +split[2];
 
-        // COMMENTED out below to avoid NaN after pressing AC:
+        // commented out below to avoid NaN after pressing AC:
         //   if (!this.methods[op] || isNaN(a) || isNaN(b)) {
         //     return NaN;
         //   }
@@ -173,6 +188,4 @@ function Calculator() {
         };
       }
 
-// to call: calculator.calculate("34 - 12");
-
-// THEN... if a number, call join -- if an operator, do operation -- if a number, join -- if =, end function
+// to call function alone: calculator.calculate("34 - 12");
